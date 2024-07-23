@@ -1,0 +1,36 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.student-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.student-item .student-name{
+    width: 80%;
+    text-align: left;
+    color:#3498db;
+}
+
+.student-item .student-name.active{
+    text-decoration: line-through;
+}
+
+.list-group-item{
+    border: 1px solid #3498db;
+}
+
+.title{
+    color:#3498db;
+    padding: 30px;
+    text-transform: uppercase;
+}
+
+input[type="checkbox"]:checked{
+    background-color: red  !important;
+}
