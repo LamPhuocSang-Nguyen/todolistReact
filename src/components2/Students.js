@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Container, ListGroup} from 'reactstrap';
 import Student from "../components2/Student.js"
 import Add from "../components2/Add.js"
@@ -30,9 +30,17 @@ export default function Students(){
         }
     ]);
 
-    if(localStorage.getItem("list")){
-        setList(JSON.parse(localStorage.getItem("list")));
-    }
+    useEffect(()=>{
+        if(localStorage.getItem("list")){
+            setList(JSON.parse(localStorage.getItem("list")));
+        }
+    },[])
+
+    console.log("Render student")
+
+    useEffect(()=>{
+        console.log("Load duy nhat 1 lan")
+    },[])
 
     const deleteById = (id)=>{
         const newList=list.filter(stud=>stud.id!==id)
@@ -53,8 +61,11 @@ export default function Students(){
     }
 
     //still not localstorege
-    const addNewStudent = (text)=>{
-        setList([...list,{id:list.length+1, name:text, Checked:false}])
+    const addNewStudent = (name)=>{
+        //setList([...list,{id:list.length+1, name:name, Checked:false}])
+        const newList=[...list,{id:list.length==0?1:list.reduce((item,value)=> Math.max(item.id,value)+1.0), name:name, Checked:false}]
+        setList(newList)
+        localStorage.setItem("list",JSON.stringify(newList))
     }
 
     const filterStudents=(list, flag)=>{
